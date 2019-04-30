@@ -1,0 +1,2 @@
+
+TAKE_FRESH_MESSAGE = False
