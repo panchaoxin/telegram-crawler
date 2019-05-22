@@ -1,2 +1,2 @@
 
-TAKE_FRESH_MESSAGE = False
+TAKE_MODE = 'OLD'

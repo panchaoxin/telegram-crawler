@@ -19,7 +19,7 @@ Edit `client.py`
 ```python
 # Telegram config
 api_id = 123456  # Your api_id
-api_hash = 1234562a3e03835d881624e28c6f1d50  # Your api_hash
+api_hash = '1234562a3e03835d881624e28c6f1d50'  # Your api_hash
 session_name = 'session_name'
 proxy_param = (socks.SOCKS5, 'localhost', 1080)   # Proxy settings, if you need
 ```
@@ -27,56 +27,6 @@ proxy_param = (socks.SOCKS5, 'localhost', 1080)   # Proxy settings, if you need
 ## 1.3. MySQL setup
 
 Execute `telegram.sql`
-```sql
--- ----------------------------
--- Table structure for message
--- ----------------------------
-DROP TABLE IF EXISTS `message`;
-CREATE TABLE `message`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `message_id` bigint(20) DEFAULT NULL,
-  `chat_id` bigint(20) DEFAULT NULL,
-  `is_out` tinyint(1) DEFAULT NULL,
-  `is_mentioned` tinyint(1) DEFAULT NULL,
-  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `date` datetime(0) DEFAULT NULL,
-  `from_id` bigint(20) DEFAULT NULL,
-  `is_reply` tinyint(1) DEFAULT NULL,
-  `reply_to_msg_id` bigint(20) DEFAULT NULL,
-  `is_channel` tinyint(1) DEFAULT NULL,
-  `is_group` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 169697 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
-
--- ----------------------------
--- Table structure for channel
--- ----------------------------
-DROP TABLE IF EXISTS `channel`;
-CREATE TABLE `channel`  (
-  `id` bigint(20) NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `is_channel` tinyint(1) DEFAULT NULL,
-  `is_group` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
-
--- ----------------------------
--- Table structure for user
--- ----------------------------
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user`  (
-  `id` bigint(20) NOT NULL,
-  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `phone` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-```
 
 Edit `database.py`
 ```python
@@ -97,7 +47,8 @@ connection = pymysql.connect(host=MYSQL_HOST, user=MYSQL_USER,
 ```bash
 # Crawl message
 python start_crawl_message.py
-python start_crawl_message.py --take-fresh
+python start_crawl_message.py --take-mode=NEW
+python start_crawl_message.py --take-mode=OLD
 # Crawl user
 python start_crawl_user.py
 ```

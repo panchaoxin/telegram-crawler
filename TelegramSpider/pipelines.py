@@ -19,6 +19,14 @@ def get_max_message_id_of_chat(chat_id):
     r = cursor.fetchone()
     return r["m"]
 
+def get_min_message_id_of_chat(chat_id):
+    sql = """
+        SELECT MIN(message_id) AS m FROM message WHERE chat_id = %s
+    """ % chat_id
+    cursor.execute(sql)
+    r = cursor.fetchone()
+    return r["m"]
+
 
 def process_value(value):
     if isinstance(value, bool):

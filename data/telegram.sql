@@ -23,19 +23,18 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `message_id` bigint(20) DEFAULT NULL,
-  `chat_id` bigint(20) DEFAULT NULL,
-  `is_out` tinyint(1) DEFAULT NULL,
-  `is_mentioned` tinyint(1) DEFAULT NULL,
-  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `message_id` bigint(20) DEFAULT NULL COMMENT '消息ID，同一个群组的消息ID唯一',
+  `chat_id` bigint(20) NOT NULL COMMENT '当前对话ID',
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '消息文本',
   `date` datetime(0) DEFAULT NULL,
-  `from_id` bigint(20) DEFAULT NULL,
-  `is_reply` tinyint(1) DEFAULT NULL,
-  `reply_to_msg_id` bigint(20) DEFAULT NULL,
-  `is_channel` tinyint(1) DEFAULT NULL,
-  `is_group` tinyint(1) DEFAULT NULL,
+  `from_id` bigint(20) DEFAULT NULL COMMENT '谁发的',
+  `is_reply` tinyint(1) DEFAULT NULL COMMENT '是不是回复某条消息',
+  `reply_to_msg_id` bigint(20) DEFAULT NULL COMMENT '回复某条消息的ID',
+  `is_channel` tinyint(1) DEFAULT NULL COMMENT '是不是频道',
+  `is_group` tinyint(1) DEFAULT NULL COMMENT '是不是群组（频道包括群组）',
+  `media_file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '文件路径（比如图片、文件）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 169697 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 
 -- ----------------------------

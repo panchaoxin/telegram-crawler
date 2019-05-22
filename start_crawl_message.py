@@ -11,15 +11,16 @@ def print_usage():
     print(
 """
 USAGE: 
-    python main.py
-    python main.py --take-fresh""")
+    python start_crawl_message.py
+    python start_crawl_message.py --take-mode=NEW
+    python start_crawl_message.py --take-mode=OLD""")
 
 if len(sys.argv) > 1:
     try:
-        options, args = getopt.getopt(sys.argv[1:], "", ["take-fresh"])
+        options, args = getopt.getopt(sys.argv[1:], "", ["take-mode="])
         for name, value in options:
-            if name in ("--take-fresh"):
-                settings.TAKE_FRESH_MESSAGE = True
+            if name == "--take-mode" and value in ("NEW", "OLD"):
+                settings.TAKE_MODE = value
             else:
                 raise RuntimeError()
     except:
