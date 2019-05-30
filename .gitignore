@@ -125,4 +125,5 @@ dmypy.json
 # Custom
 *.session
 media/
+avatar/
 *.session-journal

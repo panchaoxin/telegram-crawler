@@ -72,6 +72,14 @@ def save_user(item):
     cursor.execute(sql, tuple(process_value(i) for i in values))
     return db.connection.commit()
 
+def update_user(item):
+    if not item['phone']:
+        return
+
+    # Only update phone
+    sql = 'UPDATE user SET phone=%s WHERE id=%s' % (item['phone'], item['id'])
+    cursor.execute(sql)
+    return db.connection.commit()
 
 def process_user(item):
     exist = get_user(item)
@@ -81,6 +89,8 @@ def process_user(item):
         except Exception as e:
             print(item)
             print(e)
+    else:
+        update_user(item)
 
 """
     channel

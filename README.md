@@ -51,4 +51,6 @@ python start_crawl_message.py --take-mode=NEW
 python start_crawl_message.py --take-mode=OLD
 # Crawl user
 python start_crawl_user.py
+# Crawl contact user
+python start_crawl_contact_user.py
 ```
